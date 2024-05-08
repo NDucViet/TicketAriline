@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Hello</h1>
+    <div>
+        <a href="#" id="userName">ccc</a>
+    </div>
+</body>
+
+</html>
+<div id="header">
+    <script>
+        // Kiểm tra cookie để xác định người dùng đã đăng nhập hay chưa
+        function checkLogin() {
+            var user = getCookie("user");
+            if (user !== "") {
+                document.getElementById("user-info").innerHTML = "Xin chào, " + user;
+            } else {
+                document.getElementById("user-info").innerHTML = "<a href='/login'>Đăng nhập</a>";
+            }
+        }
+
+        // Hàm để lấy giá trị của cookie
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return "";
+        }
+
+        // Gọi hàm kiểm tra khi trang được tải
+        checkLogin();
+    </script>
+    <div id="user-info"></div>
+</div>
